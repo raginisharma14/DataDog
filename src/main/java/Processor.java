@@ -26,7 +26,7 @@ public class Processor {
 	 * Iterates over the queue and count the number of hits in last 120 sec/2mins
 	 */
 	public void healthCheck(int maxThreshold, int minThreshold, long triggeredTime) {
-		int count = sharedResource.getTotalCount();
+		int count = sharedResource.getTotalHits();
 
 		if (count / TIME_CHECK > MAX_THRESHOLD) {
 			System.out.println("High traffic generated an alert -hits =" + count + " , triggered at " + triggeredTime);

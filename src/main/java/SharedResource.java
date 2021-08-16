@@ -3,7 +3,7 @@ import java.util.Deque;
 
 public class SharedResource {
 
-	int totalCount =0;
+	int totalHits =0;
 	Deque<Pair<Long, Metric>> queue = new ArrayDeque<Pair<Long, Metric>>();
 	
 	public synchronized void addToQueue(String line) {
@@ -21,13 +21,13 @@ public class SharedResource {
 			Pair<Long, Metric> newPair = new Pair<Long, Metric>(currentTime, metric);
 			queue.offer(newPair);
 		}
-		totalCount++;
+		totalHits++;
 	}
 
 	public synchronized void removeFromQueue() {
 		if(!queue.isEmpty()) {
 			Pair<Long, Metric> p = queue.poll();
-			totalCount = totalCount - p.getValue().getCount();
+			totalHits = totalHits - p.getValue().getCount();
 		}
 	}
 	public Metric retriveMetrics(String line) {
@@ -41,12 +41,12 @@ public class SharedResource {
 		return metric;
 	}
 
-	public int getTotalCount() {
-		return totalCount;
+	public int getTotalHits() {
+		return totalHits;
 	}
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+	public void setTotalHits(int totalHits) {
+		this.totalHits = totalHits;
 	}
 
 	public Deque<Pair<Long, Metric>> getQueue() {

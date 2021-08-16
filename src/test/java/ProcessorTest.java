@@ -21,7 +21,7 @@ public class ProcessorTest {
 		Processor processor = new Processor(sr);
 		processor.processQueue();
 		
-		Assert.assertEquals(sr.getTotalCount(), 0);
+		Assert.assertEquals(sr.getTotalHits(), 0);
 		
 	}
 	
